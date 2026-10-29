@@ -1,11 +1,16 @@
 package ca.keyin.controller;
 
 import ca.keyin.entity.Passenger;
+import ca.keyin.exception.ResourceNotFoundException;
 import ca.keyin.service.PassengerService;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/passengers")
@@ -22,9 +27,29 @@ public class PassengerController {
         return passengerService.getAllPassengers();
     }
 
+    @GetMapping("/paged")
+    public Page<Passenger> getPassengersPaged(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String direction) {
+
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return passengerService.getPassengers(pageable);
+    }
+
     @GetMapping("/{id}")
-    public Optional<Passenger> getPassengerById(@PathVariable Long id) {
-        return passengerService.getPassengerById(id);
+    public Passenger getPassengerById(@PathVariable Long id) {
+
+        return passengerService.getPassengerById(id)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Passenger not found with id: " + id));
     }
 
     @PostMapping

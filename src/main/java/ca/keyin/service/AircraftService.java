@@ -2,6 +2,9 @@ package ca.keyin.service;
 
 import ca.keyin.entity.Aircraft;
 import ca.keyin.repository.AircraftRepository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +33,9 @@ public class AircraftService {
 
     public void deleteAircraft(Long id) {
         aircraftRepository.deleteById(id);
+    }
+
+    public Page<Aircraft> getAircraft(Pageable pageable) {
+        return aircraftRepository.findAll(pageable);
     }
 }
