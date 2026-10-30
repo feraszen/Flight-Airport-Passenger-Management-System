@@ -2,13 +2,22 @@
 
 ## Project Overview
 
-Flight Network API is a Spring Boot REST application used to manage cities, airports, passengers, aircraft, and flights.
+Flight Network API is a Spring Boot REST application designed to manage cities, airports, passengers, aircraft, and flights.
 
-The application provides CRUD operations, reporting endpoints, pagination, sorting, exception handling, and MySQL database integration.
+The application provides:
+
+- Full CRUD operations
+- Report endpoints for client integration
+- Pagination and sorting
+- Validation and exception handling
+- MySQL database integration
+- JUnit and Mockito testing
+
+The API was developed as Part 1 of the SDATDEVOPS Midterm Project.
 
 ---
 
-## Technologies Used
+# Technologies Used
 
 - Java 21
 - Spring Boot 3.5.6
@@ -22,33 +31,43 @@ The application provides CRUD operations, reporting endpoints, pagination, sorti
 
 ---
 
-## Database
+# Project Structure
 
-Database Name:
+```text
+src/main/java/ca/keyin
 
-```sql
+├── controller
+├── dto
+├── entity
+├── exception
+├── repository
+├── service
+└── FlightNetworkApiApplication.java
+```
+
+---
+
+# Database Configuration
+
+Database:
+
+```text
 flight_network
 ```
 
-Configure database credentials in:
-
-```text
-src/main/resources/application.yml
-```
-
-Example:
+Configuration:
 
 ```yaml
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/flight_network
-    username: root
-    password: root123
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root123}
 ```
 
 ---
 
-## Running the Application
+# Running the Application
 
 Compile:
 
@@ -62,6 +81,12 @@ Run:
 mvn spring-boot:run
 ```
 
+Run Tests:
+
+```bash
+mvn test
+```
+
 API Base URL:
 
 ```text
@@ -70,19 +95,84 @@ http://localhost:8080
 
 ---
 
-## Core Entities
+# Core Entities
 
-- City
-- Airport
-- Passenger
-- Aircraft
-- Flight
+## City
+
+```text
+id
+name
+state
+population
+```
+
+## Airport
+
+```text
+id
+name
+code
+city
+```
+
+## Passenger
+
+```text
+id
+firstName
+lastName
+phoneNumber
+city
+```
+
+## Aircraft
+
+```text
+id
+type
+airlineName
+numberOfPassengers
+```
+
+## Flight
+
+```text
+id
+departureAirport
+arrivalAirport
+aircraft
+passengers
+```
 
 ---
 
-## CRUD Endpoints
+# Entity Relationships
 
-### Cities
+```text
+City
+  1 -> Many Airport
+
+Passenger
+  Many -> 1 City
+
+Flight
+  Many -> 1 Aircraft
+
+Flight
+  Many -> 1 Departure Airport
+
+Flight
+  Many -> 1 Arrival Airport
+
+Flight
+  Many <-> Many Passenger
+```
+
+---
+
+# CRUD Endpoints
+
+## Cities
 
 ```http
 GET    /api/cities
@@ -92,7 +182,7 @@ PUT    /api/cities/{id}
 DELETE /api/cities/{id}
 ```
 
-### Airports
+## Airports
 
 ```http
 GET    /api/airports
@@ -102,7 +192,7 @@ PUT    /api/airports/{id}
 DELETE /api/airports/{id}
 ```
 
-### Passengers
+## Passengers
 
 ```http
 GET    /api/passengers
@@ -112,7 +202,7 @@ PUT    /api/passengers/{id}
 DELETE /api/passengers/{id}
 ```
 
-### Aircraft
+## Aircraft
 
 ```http
 GET    /api/aircraft
@@ -122,7 +212,7 @@ PUT    /api/aircraft/{id}
 DELETE /api/aircraft/{id}
 ```
 
-### Flights
+## Flights
 
 ```http
 GET    /api/flights
@@ -134,27 +224,63 @@ DELETE /api/flights/{id}
 
 ---
 
-## Report Endpoints
+# Report Endpoints
 
-### Airports By City
+These endpoints were specifically created for Part 2 (CLI Client).
+
+## Airports By City
 
 ```http
 GET /api/reports/airports-by-city
 ```
 
-### Aircraft By Passenger
+Example:
+
+```json
+{
+  "Toronto": ["YYZ"],
+  "Dubai": ["DXB"],
+  "Frankfurt": ["FRA"]
+}
+```
+
+---
+
+## Aircraft By Passenger
 
 ```http
 GET /api/reports/aircraft-by-passenger
 ```
 
-### Airports By Aircraft
+Example:
+
+```json
+{
+  "Ahmed Ali": [
+    "Airbus A320",
+    "Airbus A321"
+  ],
+  "Sara Khan": [
+    "Airbus A321"
+  ],
+  "Omar Hassan": [
+    "Boeing 737",
+    "Airbus A320"
+  ]
+}
+```
+
+---
+
+## Airports By Aircraft
 
 ```http
 GET /api/reports/airports-by-aircraft
 ```
 
-### Airports Used By Passenger
+---
+
+## Airports Used By Passenger
 
 ```http
 GET /api/reports/airports-used-by-passenger
@@ -162,13 +288,45 @@ GET /api/reports/airports-used-by-passenger
 
 ---
 
-## Pagination Examples
+# Pagination
 
-### Passengers
+Pagination was implemented for:
+
+```http
+GET /api/cities/paged
+GET /api/airports/paged
+GET /api/passengers/paged
+GET /api/aircraft/paged
+GET /api/flights/paged
+```
+
+## Example
 
 ```http
 GET /api/passengers/paged?page=0&size=2
 ```
+
+Response includes:
+
+```json
+{
+  "totalElements": 3,
+  "totalPages": 2
+}
+```
+
+---
+
+# Sorting
+
+Sorting is supported through:
+
+```http
+sortBy
+direction
+```
+
+Examples:
 
 ```http
 GET /api/passengers/paged?page=0&size=3&sortBy=lastName
@@ -178,21 +336,61 @@ GET /api/passengers/paged?page=0&size=3&sortBy=lastName
 GET /api/passengers/paged?page=0&size=3&sortBy=lastName&direction=desc
 ```
 
-### Aircraft
-
 ```http
-GET /api/aircraft/paged?page=0&size=1
-```
-
-```http
-GET /api/aircraft/paged?page=0&size=2&sortBy=type
+GET /api/airports/paged?page=0&size=3&sortBy=code&direction=desc
 ```
 
 ---
 
-## Exception Handling
+# Validation
 
-The API uses:
+Implemented using:
+
+```java
+@NotBlank
+@NotNull
+@NotEmpty
+@Positive
+@Size
+```
+
+Validation exists on:
+
+```text
+City
+Airport
+Passenger
+Aircraft
+Flight
+```
+
+Example Invalid Request:
+
+```json
+{
+  "name": "",
+  "state": "",
+  "population": -1
+}
+```
+
+Response:
+
+```http
+400 Bad Request
+```
+
+```json
+{
+  "error": "Validation failed"
+}
+```
+
+---
+
+# Exception Handling
+
+Implemented:
 
 ```text
 ResourceNotFoundException
@@ -207,37 +405,73 @@ GET /api/passengers/999
 
 Response:
 
+```http
+404 Not Found
+```
+
 ```json
 {
   "error": "Passenger not found with id: 999"
 }
 ```
 
-Status:
+---
 
-```http
-404 Not Found
+# Sample Data
+
+## Cities
+
+```text
+Toronto
+Dubai
+Frankfurt
+```
+
+## Airports
+
+```text
+YYZ
+DXB
+FRA
+```
+
+## Passengers
+
+```text
+Ahmed Ali
+Sara Khan
+Omar Hassan
+```
+
+## Aircraft
+
+```text
+Boeing 737 (Air Canada)
+Airbus A320 (Emirates)
+Airbus A321 (Lufthansa)
 ```
 
 ---
 
-## Testing
+# Testing
 
-Run all tests:
+Implemented Service Tests:
+
+```text
+CityServiceTest
+AirportServiceTest
+PassengerServiceTest
+AircraftServiceTest
+FlightServiceTest
+```
+
+Run:
 
 ```bash
 mvn test
 ```
 
-Implemented Tests:
-
-- CityServiceTest
-- AirportServiceTest
-- PassengerServiceTest
-- AircraftServiceTest
-- FlightServiceTest
-
-Current Test Status:
+Latest Result:
 
 ```text
 Tests run: 5
@@ -248,50 +482,57 @@ BUILD SUCCESS
 
 ---
 
-## Sample Data
+# Postman Collection
 
-### Cities
-
-- Toronto
-- Dubai
-- Frankfurt
-
-### Airports
-
-- YYZ
-- DXB
-- FRA
-
-### Passengers
-
-- Ahmed Ali
-- Sara Khan
-- Omar Hassan
-
-### Aircraft
-
-- Boeing 737 (Air Canada)
-- Airbus A320 (Emirates)
-
----
-## Postman Collection
-
-The complete Postman collection is available in:
+The exported Postman collection is available at:
 
 ```text
 docs/postman/FlightNetwork.postman_collection.json
 ```
 
 ---
-## Team Members
 
-- Feras Zen Alabdeen
-- Team Partner
+# Screenshots
+
+Postman screenshots are available at:
+
+```text
+docs/screenshots/
+```
+
+Included:
+
+```text
+report-airports-by-city.png
+report-aircraft-by-passenger.png
+report-airports-by-aircraft.png
+report-airports-used-by-passenger.png
+pagination-passengers.png
+pagination-aircraft.png
+sorting-example.png
+```
 
 ---
 
-## Repository
+# Reflection Document
+
+Reflection answers are available in:
+
+```text
+REFLECTION_API.md
+```
+
+---
+
+# Repository
 
 ```text
 https://github.com/feraszen/Flight-Management-CLI.git
 ```
+
+---
+
+# Team
+
+- Feras Zen Alabdeen
+- Team Partner
