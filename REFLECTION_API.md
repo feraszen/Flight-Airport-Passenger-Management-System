@@ -51,3 +51,42 @@ Returns records with pagination details including page number, size, total pages
 Use List<T> for small datasets.
 
 Use Page<T> for large datasets that require pagination.
+
+
+---
+
+## Future Improvements
+
+During development, report endpoints were initially implemented using names and aircraft types as grouping keys.
+
+Example:
+
+```json
+{
+  "Ahmed Ali": [
+    "Boeing 737"
+  ]
+}
+```
+
+This approach works for the current dataset but may cause collisions if:
+
+- Multiple passengers have the same full name.
+- Multiple aircraft share the same aircraft type.
+- Multiple cities share the same name.
+
+A more robust approach would be to use DTO objects that include unique identifiers.
+
+Example:
+
+```json
+{
+  "passengerId": 1,
+  "passengerName": "Ahmed Ali",
+  "aircraft": [
+    "Boeing 737"
+  ]
+}
+```
+
+This enhancement was identified during API review and is recommended for future scalability.

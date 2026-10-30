@@ -3,6 +3,8 @@ package ca.keyin.controller;
 import ca.keyin.entity.Airport;
 import ca.keyin.service.AirportService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,13 +51,16 @@ public class AirportController {
     }
 
     @PostMapping
-    public Airport createAirport(@RequestBody Airport airport) {
+    public Airport createAirport(
+            @Valid @RequestBody Airport airport) {
+
         return airportService.saveAirport(airport);
     }
 
     @PutMapping("/{id}")
-    public Airport updateAirport(@PathVariable Long id,
-                                 @RequestBody Airport airport) {
+    public Airport updateAirport(
+            @PathVariable Long id,
+            @Valid @RequestBody Airport airport) {
 
         airport.setId(id);
 

@@ -6,6 +6,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 @Entity
 public class Passenger {
 
@@ -13,19 +17,29 @@ public class Passenger {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "First name is required")
+    @Size(min = 2, max = 50)
     private String firstName;
 
+    @NotBlank(message = "Last name is required")
+    @Size(min = 2, max = 50)
     private String lastName;
 
+    @NotBlank(message = "Phone number is required")
+    @Size(min = 7, max = 20)
     private String phoneNumber;
 
+    @NotNull(message = "City is required")
     @ManyToOne
     private City city;
 
     public Passenger() {
     }
 
-    public Passenger(String firstName, String lastName, String phoneNumber, City city) {
+    public Passenger(String firstName,
+                     String lastName,
+                     String phoneNumber,
+                     City city) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;

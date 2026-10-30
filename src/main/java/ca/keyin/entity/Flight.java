@@ -1,6 +1,10 @@
 package ca.keyin.entity;
 
 import jakarta.persistence.*;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,15 +15,19 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "Departure airport is required")
     @ManyToOne
     private Airport departureAirport;
 
+    @NotNull(message = "Arrival airport is required")
     @ManyToOne
     private Airport arrivalAirport;
 
+    @NotNull(message = "Aircraft is required")
     @ManyToOne
     private Aircraft aircraft;
 
+    @NotEmpty(message = "At least one passenger is required")
     @ManyToMany
     @JoinTable(
             name = "flight_passengers",

@@ -3,6 +3,10 @@ package ca.keyin.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +17,15 @@ public class City {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "City name is required")
     private String name;
 
+    @NotBlank(message = "State is required")
     private String state;
+
+    @NotNull(message = "Population is required")
+    @Positive(message = "Population must be greater than zero")
+    private Long population;
 
     @JsonIgnore
     @OneToMany(mappedBy = "city")
@@ -24,9 +34,10 @@ public class City {
     public City() {
     }
 
-    public City(String name, String state) {
+    public City(String name, String state, Long population) {
         this.name = name;
         this.state = state;
+        this.population = population;
     }
 
     public Long getId() {
@@ -39,6 +50,10 @@ public class City {
 
     public String getState() {
         return state;
+    }
+
+    public Long getPopulation() {
+        return population;
     }
 
     public List<Airport> getAirports() {
@@ -55,6 +70,10 @@ public class City {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public void setPopulation(Long population) {
+        this.population = population;
     }
 
     public void setAirports(List<Airport> airports) {

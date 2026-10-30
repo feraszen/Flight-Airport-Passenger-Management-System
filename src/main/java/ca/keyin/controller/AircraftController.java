@@ -3,6 +3,8 @@ package ca.keyin.controller;
 import ca.keyin.entity.Aircraft;
 import ca.keyin.service.AircraftService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,13 +51,16 @@ public class AircraftController {
     }
 
     @PostMapping
-    public Aircraft createAircraft(@RequestBody Aircraft aircraft) {
+    public Aircraft createAircraft(
+            @Valid @RequestBody Aircraft aircraft) {
+
         return aircraftService.saveAircraft(aircraft);
     }
 
     @PutMapping("/{id}")
-    public Aircraft updateAircraft(@PathVariable Long id,
-                                   @RequestBody Aircraft aircraft) {
+    public Aircraft updateAircraft(
+            @PathVariable Long id,
+            @Valid @RequestBody Aircraft aircraft) {
 
         aircraft.setId(id);
 

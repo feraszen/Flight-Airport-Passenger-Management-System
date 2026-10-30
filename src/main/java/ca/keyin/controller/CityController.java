@@ -3,6 +3,8 @@ package ca.keyin.controller;
 import ca.keyin.entity.City;
 import ca.keyin.service.CityService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,13 +51,13 @@ public class CityController {
     }
 
     @PostMapping
-    public City createCity(@RequestBody City city) {
+    public City createCity(@Valid @RequestBody City city) {
         return cityService.saveCity(city);
     }
 
     @PutMapping("/{id}")
     public City updateCity(@PathVariable Long id,
-                           @RequestBody City city) {
+                           @Valid @RequestBody City city) {
 
         city.setId(id);
 
@@ -67,4 +69,3 @@ public class CityController {
         cityService.deleteCity(id);
     }
 }
-

@@ -7,6 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 @Entity
 public class Airport {
 
@@ -14,10 +18,19 @@ public class Airport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Airport name is required")
+    @Size(min = 2, max = 100)
     private String name;
 
+    @NotBlank(message = "Airport code is required")
+    @Size(
+        min = 3,
+        max = 5,
+        message = "Airport code must be between 3 and 5 characters"
+    )
     private String code;
 
+    @NotNull(message = "City is required")
     @ManyToOne
     @JsonIgnoreProperties("airports")
     private City city;

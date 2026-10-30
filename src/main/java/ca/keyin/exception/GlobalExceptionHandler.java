@@ -1,6 +1,7 @@
 package ca.keyin.exception;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.LinkedHashMap;
@@ -17,6 +18,29 @@ public class GlobalExceptionHandler {
         Map<String, String> response = new LinkedHashMap<>();
 
         response.put("error", ex.getMessage());
+
+        return response;
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public Map<String, Object> handleValidationException(
+            MethodArgumentNotValidException ex) {
+
+        Map<String, Object> response = new LinkedHashMap<>();
+
+        response.put("error", "Validation failed");
+
+        Map<String, String> details = new LinkedHashMap<>();
+
+        ex.getBindingResult()
+                .getFieldErrors()
+                .forEach(error ->
+                        details.put(
+                                error.getField(),
+                                error.getDefaultMessage()));
+
+        response.put("details", details);
 
         return response;
     }

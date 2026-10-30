@@ -4,6 +4,8 @@ import ca.keyin.entity.Passenger;
 import ca.keyin.exception.ResourceNotFoundException;
 import ca.keyin.service.PassengerService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -53,13 +55,16 @@ public class PassengerController {
     }
 
     @PostMapping
-    public Passenger createPassenger(@RequestBody Passenger passenger) {
+    public Passenger createPassenger(
+            @Valid @RequestBody Passenger passenger) {
+
         return passengerService.savePassenger(passenger);
     }
 
     @PutMapping("/{id}")
-    public Passenger updatePassenger(@PathVariable Long id,
-                                     @RequestBody Passenger passenger) {
+    public Passenger updatePassenger(
+            @PathVariable Long id,
+            @Valid @RequestBody Passenger passenger) {
 
         passenger.setId(id);
 

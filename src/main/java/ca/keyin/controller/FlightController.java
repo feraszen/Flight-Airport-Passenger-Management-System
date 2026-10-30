@@ -3,6 +3,8 @@ package ca.keyin.controller;
 import ca.keyin.entity.Flight;
 import ca.keyin.service.FlightService;
 
+import jakarta.validation.Valid;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -49,13 +51,16 @@ public class FlightController {
     }
 
     @PostMapping
-    public Flight createFlight(@RequestBody Flight flight) {
+    public Flight createFlight(
+            @Valid @RequestBody Flight flight) {
+
         return flightService.saveFlight(flight);
     }
 
     @PutMapping("/{id}")
-    public Flight updateFlight(@PathVariable Long id,
-                               @RequestBody Flight flight) {
+    public Flight updateFlight(
+            @PathVariable Long id,
+            @Valid @RequestBody Flight flight) {
 
         flight.setId(id);
 
@@ -67,4 +72,3 @@ public class FlightController {
         flightService.deleteFlight(id);
     }
 }
-

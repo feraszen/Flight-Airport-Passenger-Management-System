@@ -274,7 +274,15 @@ BUILD SUCCESS
 - Airbus A320 (Emirates)
 
 ---
+## Postman Collection
 
+The complete Postman collection is available in:
+
+```text
+docs/postman/FlightNetwork.postman_collection.json
+```
+
+---
 ## Team Members
 
 - Feras Zen Alabdeen

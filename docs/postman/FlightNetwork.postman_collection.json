@@ -1,0 +1,634 @@
+{
+  "info": {
+    "_postman_id": "bcd62cea-983d-44d5-81f7-b255e193865e",
+    "name": "Flight Network API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58349856",
+    "_collection_link": "https://go.postman.co/collection/58349856-bcd62cea-983d-44d5-81f7-b255e193865e?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Cities",
+      "item": [
+        {
+          "name": "Get All Cities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get City By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create City",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update City",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete City",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Airports",
+      "item": [
+        {
+          "name": "Get All Airports",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Airport By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Airport",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Airport",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Airport",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airport Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airport Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airport Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Passengers",
+      "item": [
+        {
+          "name": "Get All Passengers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Passenger By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Passenger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Passenger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Passenger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passenger Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passenger Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passenger Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Aircraft",
+      "item": [
+        {
+          "name": "Get All Aircraft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Aircraft By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Aircraft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Aircraft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Aircraft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Flights",
+      "item": [
+        {
+          "name": "Get All Flights",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Flight By ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Flight",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Flight",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Flight",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Flight Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Flight Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Flight Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reports",
+      "item": [
+        {
+          "name": "Airports By City",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft By Passenger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airports By Aircraft",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airports Used By Passenger",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pagination",
+      "item": [
+        {
+          "name": "Cities Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airports Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passengers Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Flights Pagination",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passenger Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airport Sorting",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Validation",
+      "item": [
+        {
+          "name": "City Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Airport Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Passenger Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Aircraft Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Flight Validation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": ""
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
