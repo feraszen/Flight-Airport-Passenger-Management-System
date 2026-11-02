@@ -4,38 +4,44 @@
 
 ### Team Members
 
-- Feras Zen Alabdeen
-- Darrell Declaro
+| Team Member | Contribution |
+|------------|-------------|
+| Feras Zen Alabdeen | Flight Network API Development, Database Integration, Testing, Documentation |
+| Darrell Declaro | Flight Network CLI Development, API Integration, Testing |
 
 ---
 
 # Project Overview
 
-Flight & Airport Management System is a two-part distributed application designed to manage and analyze flight network data.
+Flight & Airport Management System is a distributed Java-based application developed as part of the SDATDEVOPS Midterm Project.
 
-The system consists of:
+The system consists of two integrated components:
 
-```text
-Part 1 - Flight Network API (Spring Boot REST API)
-Part 2 - Flight Network CLI (Java Command Line Client)
-```
+- Part 1 – Flight Network API (Spring Boot REST API)
+- Part 2 – Flight Network CLI (Java Command Line Client)
 
-The API manages data storage, business logic, reporting, validation, pagination, sorting, and database integration.
+The API manages application data, business logic, reporting, validation, pagination, sorting, and MySQL database integration.
 
-The CLI retrieves information through HTTP requests and presents reports to users through an interactive console interface.
+The CLI consumes REST endpoints exposed by the API and presents information through an interactive command-line interface.
 
 ---
 
-# Project Architecture
+# System Architecture
 
 ```text
-CLI Application
-       │
-       ▼
-REST API (Spring Boot)
-       │
-       ▼
-MySQL Database
+┌─────────────────────┐
+│ Flight Network CLI  │
+└──────────┬──────────┘
+           │ HTTP Requests
+           ▼
+┌─────────────────────┐
+│ Flight Network API  │
+└──────────┬──────────┘
+           │ JPA / Hibernate
+           ▼
+┌─────────────────────┐
+│   MySQL Database    │
+└─────────────────────┘
 ```
 
 ---
@@ -45,33 +51,52 @@ MySQL Database
 ```text
 Flight-Airport-Passenger-Management-System
 │
-├── flight-network-api
+├── flight-network-api/
+│   ├── src/
+│   ├── docs/
+│   ├── README.md
+│   └── REFLECTION_API.md
 │
-└── flight-network-cli
+├── flight-network-cli/
+│   ├── src/
+│   ├── docs/
+│   └── READMEPART2.md
+│
+├── docs/
+├── DEMO_VIDEO.md
+├── README.md
+└── pom.xml
 ```
 
 ---
 
 # Running the System
 
-## Start the API
+## Step 1 – Start the API
 
 ```bash
 cd flight-network-api
 mvn spring-boot:run
 ```
 
-Verify:
+Verify the application is running:
 
 ```text
 http://localhost:8080
 ```
 
+Expected output:
+
+```text
+Tomcat started on port 8080
+Started FlightNetworkApiApplication
+```
+
 ---
 
-## Start the CLI
+## Step 2 – Start the CLI
 
-Open a second terminal:
+Open a second terminal window:
 
 ```bash
 cd flight-network-cli
@@ -90,7 +115,7 @@ by default.
 
 # Part 1 – Flight Network API
 
-## Technologies
+## Technologies Used
 
 ```text
 Java 21
@@ -157,7 +182,7 @@ passengers
 
 ---
 
-## Relationships
+## Entity Relationships
 
 ```text
 City
@@ -233,7 +258,7 @@ GET /api/reports/airports-used-by-passenger
 
 ---
 
-## Pagination & Sorting
+## Pagination and Sorting
 
 Implemented for:
 
@@ -290,21 +315,18 @@ ResourceNotFoundException
 GlobalExceptionHandler
 ```
 
-Examples:
-
-```http
-404 Not Found
-```
+Common responses:
 
 ```http
 400 Bad Request
+404 Not Found
 ```
 
 ---
 
 ## API Testing
 
-Implemented Service Tests:
+Implemented service tests:
 
 ```text
 CityServiceTest
@@ -314,7 +336,7 @@ AircraftServiceTest
 FlightServiceTest
 ```
 
-Result:
+Results:
 
 ```text
 Tests run: 5
@@ -327,7 +349,7 @@ BUILD SUCCESS
 
 # Part 2 – Flight Network CLI
 
-## Technologies
+## Technologies Used
 
 ```text
 Java 21
@@ -382,7 +404,7 @@ Timestamp
 
 ## CLI Testing
 
-Implemented:
+Implemented tests:
 
 ```text
 ApiClientTest
@@ -392,7 +414,7 @@ ConsolePrinterTest
 MainMenuTest
 ```
 
-Result:
+Results:
 
 ```text
 Tests run: 35
@@ -405,7 +427,7 @@ BUILD SUCCESS
 
 # Integration Testing
 
-Verified workflow:
+The following workflow was successfully verified:
 
 ```text
 CLI
@@ -418,12 +440,12 @@ MySQL
 Successfully tested:
 
 ```text
-Airports by City
-Aircraft by Passenger
-Airports by Aircraft
-Airports Used by Passenger
-View History
-Previous Record
+✓ Airports by City
+✓ Aircraft by Passenger
+✓ Airports by Aircraft
+✓ Airports Used by Passenger
+✓ View History
+✓ Previous Record
 ```
 
 ---
@@ -434,33 +456,32 @@ Previous Record
 
 ```text
 DXB → FRA
-Ahmed Ali
-Emirates Airbus A320
+Passenger: Ahmed Ali
+Aircraft: Emirates Airbus A320
 ```
 
 ### Flight 2
 
 ```text
 FRA → YYZ
-Ahmed Ali
-Sara Khan
-Lufthansa Airbus A321
+Passengers: Ahmed Ali, Sara Khan
+Aircraft: Lufthansa Airbus A321
 ```
 
 ### Flight 3
 
 ```text
 YYZ → DXB
-Omar Hassan
-Air Canada Boeing 737 MAX
+Passenger: Omar Hassan
+Aircraft: Air Canada Boeing 737 MAX
 ```
 
 ### Flight 4
 
 ```text
 DXB → YYZ
-Omar Hassan
-Emirates Airbus A320
+Passenger: Omar Hassan
+Aircraft: Emirates Airbus A320
 ```
 
 ---
@@ -470,7 +491,7 @@ Emirates Airbus A320
 The project uses:
 
 ```text
-GitHub Project Board
+GitHub Projects
 Feature Branches
 Pull Requests
 GitHub Actions
@@ -490,13 +511,13 @@ feature/*
 
 # Screenshots
 
-API Screenshots:
+## API Screenshots
 
 ```text
 flight-network-api/docs/screenshots/
 ```
 
-CLI Screenshots:
+## CLI Screenshots
 
 ```text
 flight-network-cli/docs/images/
@@ -514,30 +535,32 @@ flight-network-api/docs/postman/FlightNetwork.postman_collection.json
 
 # Documentation
 
+## API Documentation
+
 ```text
+flight-network-api/README.md
 flight-network-api/REFLECTION_API.md
+```
+
+## CLI Documentation
+
+```text
 flight-network-cli/READMEPART2.md
+```
+
+## Additional Documentation
+
+```text
+docs/
 ```
 
 ---
 
-# Repositories
+# Repositories & Documentation
 
-## Original Development Repositories
+## Final Integrated Project Repository
 
-### API Repository
-
-```text
-https://github.com/feraszen/Flight-Management-CLI
-```
-
-### CLI Repository
-
-```text
-https://github.com/dralodrec/flight-network-cli
-```
-
-## Final Submission Repository
+Flight & Airport Management System (Final Submission)
 
 ```text
 https://github.com/feraszen/Flight-Airport-Passenger-Management-System
@@ -545,23 +568,111 @@ https://github.com/feraszen/Flight-Airport-Passenger-Management-System
 
 ---
 
-# Demo Video
+## Part 1 – Flight Network API
 
-Video documentation:
+Developer: **Feras Zen Alabdeen**
+
+Repository:
+
+```text
+https://github.com/feraszen/flight-network-api
+```
+
+Documentation:
+
+```text
+flight-network-api/README.md
+flight-network-api/REFLECTION_API.md
+```
+
+Postman Collection:
+
+```text
+flight-network-api/docs/postman/FlightNetwork.postman_collection.json
+```
+
+Screenshots:
+
+```text
+flight-network-api/docs/screenshots/
+```
+
+---
+
+## Part 2 – Flight Network CLI
+
+Developer: **Darrell Declaro**
+
+Repository:
+
+```text
+https://github.com/dralodrec/flight-network-cli
+```
+
+Documentation:
+
+```text
+flight-network-cli/READMEPART2.md
+```
+
+Screenshots:
+
+```text
+flight-network-cli/docs/images/
+```
+
+---
+
+## Additional Project Files
+
+Demo Video Information:
 
 ```text
 DEMO_VIDEO.md
 ```
 
+Project Documentation:
+
+```text
+docs/
+```
+
+Reflection Document:
+
+```text
+flight-network-api/REFLECTION_API.md
+```
+
+---
+
+# Demo Video
+
+Video documentation and submission details:
+
+```text
+DEMO_VIDEO.md
+```
+
+---
+
 # Final Status
 
 ```text
-Part 1 – API                ✅ Complete
-Part 2 – CLI                ✅ Complete
-Integration Testing         ✅ Complete
-Documentation               ✅ Complete
-Testing                     ✅ Complete
-Project Management          ✅ Complete
+Part 1 – Flight Network API         ✅ Complete
+Part 2 – Flight Network CLI         ✅ Complete
 
-Ready for Submission ✅
-```
+REST API Development               ✅ Complete
+CLI Development                    ✅ Complete
+
+Database Integration               ✅ Complete
+Report Generation                  ✅ Complete
+
+Pagination & Sorting               ✅ Complete
+Validation                         ✅ Complete
+Exception Handling                 ✅ Complete
+
+Unit Testing                       ✅ Complete
+Integration Testing                ✅ Complete
+
+Documentation                      ✅ Complete
+Project Management                 ✅ Complete
