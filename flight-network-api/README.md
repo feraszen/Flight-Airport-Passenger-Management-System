@@ -527,7 +527,7 @@ REFLECTION_API.md
 # Repository
 
 ```text
-https://github.com/feraszen/Flight-Management-CLI.git
+https://github.com/feraszen/flight-network-api.git
 ```
 
 ---
@@ -535,4 +535,3 @@ https://github.com/feraszen/Flight-Management-CLI.git
 # Team
 
 - Feras Zen Alabdeen
-- Darrell Declaro
