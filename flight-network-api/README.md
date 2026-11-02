@@ -2,18 +2,18 @@
 
 ## Project Overview
 
-Flight Network API is a Spring Boot REST application designed to manage cities, airports, passengers, aircraft, and flights.
+Flight Network API is a Spring Boot REST application designed to manage cities, airports, passengers, aircraft, and flights within a flight network environment.
 
 The application provides:
 
 - Full CRUD operations
-- Report endpoints for client integration
-- Pagination and sorting
-- Validation and exception handling
+- Custom report endpoints for client integration
+- Pagination and sorting support
+- Input validation and exception handling
 - MySQL database integration
 - JUnit and Mockito testing
 
-The API was developed as Part 1 of the SDATDEVOPS Midterm Project.
+This API was developed as **Part 1** of the SDATDEVOPS Midterm Project and serves as the backend service for the Flight Network CLI application.
 
 ---
 
@@ -34,28 +34,41 @@ The API was developed as Part 1 of the SDATDEVOPS Midterm Project.
 # Project Structure
 
 ```text
-src/main/java/ca/keyin
-
-├── controller
-├── dto
-├── entity
-├── exception
-├── repository
-├── service
-└── FlightNetworkApiApplication.java
+flight-network-api
+│
+├── src/
+│   ├── main/
+│   │   └── java/ca/keyin
+│   │       ├── controller
+│   │       ├── dto
+│   │       ├── entity
+│   │       ├── exception
+│   │       ├── repository
+│   │       ├── service
+│   │       └── FlightNetworkApiApplication.java
+│   │
+│   └── test/
+│
+├── docs/
+│   ├── postman/
+│   └── screenshots/
+│
+├── README.md
+├── REFLECTION_API.md
+└── pom.xml
 ```
 
 ---
 
 # Database Configuration
 
-Database:
+Database Name:
 
 ```text
 flight_network
 ```
 
-Configuration:
+Example Configuration:
 
 ```yaml
 spring:
@@ -69,19 +82,19 @@ spring:
 
 # Running the Application
 
-Compile:
+Compile the project:
 
 ```bash
 mvn clean compile
 ```
 
-Run:
+Run the application:
 
 ```bash
 mvn spring-boot:run
 ```
 
-Run Tests:
+Run tests:
 
 ```bash
 mvn test
@@ -150,22 +163,22 @@ passengers
 
 ```text
 City
-  1 -> Many Airport
+ 1 → Many Airports
 
 Passenger
-  Many -> 1 City
+ Many → 1 City
 
 Flight
-  Many -> 1 Aircraft
+ Many → 1 Aircraft
 
 Flight
-  Many -> 1 Departure Airport
+ Many → 1 Departure Airport
 
 Flight
-  Many -> 1 Arrival Airport
+ Many → 1 Arrival Airport
 
 Flight
-  Many <-> Many Passenger
+ Many ↔ Many Passengers
 ```
 
 ---
@@ -226,9 +239,9 @@ DELETE /api/flights/{id}
 
 # Report Endpoints
 
-These endpoints were specifically created for Part 2 (CLI Client).
+These report endpoints were specifically created to support the Flight Network CLI client.
 
-## Airports By City
+## Airports by City
 
 ```http
 GET /api/reports/airports-by-city
@@ -246,7 +259,7 @@ Example:
 
 ---
 
-## Aircraft By Passenger
+## Aircraft by Passenger
 
 ```http
 GET /api/reports/aircraft-by-passenger
@@ -264,7 +277,7 @@ Example:
     "Airbus A321"
   ],
   "Omar Hassan": [
-    "Boeing 737",
+    "Boeing 737 MAX",
     "Airbus A320"
   ]
 }
@@ -272,7 +285,7 @@ Example:
 
 ---
 
-## Airports By Aircraft
+## Airports by Aircraft
 
 ```http
 GET /api/reports/airports-by-aircraft
@@ -280,7 +293,7 @@ GET /api/reports/airports-by-aircraft
 
 ---
 
-## Airports Used By Passenger
+## Airports Used by Passenger
 
 ```http
 GET /api/reports/airports-used-by-passenger
@@ -290,7 +303,7 @@ GET /api/reports/airports-used-by-passenger
 
 # Pagination
 
-Pagination was implemented for:
+Pagination has been implemented for:
 
 ```http
 GET /api/cities/paged
@@ -300,13 +313,13 @@ GET /api/aircraft/paged
 GET /api/flights/paged
 ```
 
-## Example
+Example:
 
 ```http
 GET /api/passengers/paged?page=0&size=2
 ```
 
-Response includes:
+Response:
 
 ```json
 {
@@ -354,7 +367,7 @@ Implemented using:
 @Size
 ```
 
-Validation exists on:
+Applied to:
 
 ```text
 City
@@ -446,7 +459,7 @@ Omar Hassan
 ## Aircraft
 
 ```text
-Boeing 737 (Air Canada)
+Boeing 737 MAX (Air Canada)
 Airbus A320 (Emirates)
 Airbus A321 (Lufthansa)
 ```
@@ -465,7 +478,7 @@ AircraftServiceTest
 FlightServiceTest
 ```
 
-Run:
+Run tests:
 
 ```bash
 mvn test
@@ -482,25 +495,37 @@ BUILD SUCCESS
 
 ---
 
-# Postman Collection
+# Project Resources
 
-The exported Postman collection is available at:
+## Repository
+
+```text
+https://github.com/feraszen/flight-network-api
+```
+
+## Reflection Document
+
+```text
+REFLECTION_API.md
+```
+
+## Postman Collection
 
 ```text
 docs/postman/FlightNetwork.postman_collection.json
+```
+
+## Screenshots
+
+```text
+docs/screenshots/
 ```
 
 ---
 
 # Screenshots
 
-Postman screenshots are available at:
-
-```text
-docs/screenshots/
-```
-
-Included:
+Available screenshots include:
 
 ```text
 report-airports-by-city.png
@@ -514,24 +539,22 @@ sorting-example.png
 
 ---
 
-# Reflection Document
-
-Reflection answers are available in:
-
-```text
-REFLECTION_API.md
-```
-
----
-
-# Repository
-
-```text
-https://github.com/feraszen/flight-network-api.git
-```
-
----
-
 # Team
 
 - Feras Zen Alabdeen
+
+---
+
+# Final Status
+
+```text
+CRUD Operations              ✅ Complete
+Report Endpoints             ✅ Complete
+Pagination                   ✅ Complete
+Sorting                      ✅ Complete
+Validation                   ✅ Complete
+Exception Handling           ✅ Complete
+MySQL Integration            ✅ Complete
+Unit Testing                 ✅ Complete
+Postman Testing              ✅ Complete
+Documentation                ✅ Complete

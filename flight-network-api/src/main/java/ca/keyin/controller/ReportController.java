@@ -1,35 +1,31 @@
 package ca.keyin.controller;
 
-import ca.keyin.entity.Airport;
-import ca.keyin.entity.Flight;
-import ca.keyin.entity.Passenger;
-
-import ca.keyin.repository.AirportRepository;
-import ca.keyin.repository.CityRepository;
-import ca.keyin.repository.FlightRepository;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import ca.keyin.entity.Airport;
+import ca.keyin.entity.Flight;
+import ca.keyin.entity.Passenger;
+import ca.keyin.repository.AirportRepository;
+import ca.keyin.repository.FlightRepository;
+
 @RestController
 @RequestMapping("/api/reports")
 public class ReportController {
 
-    private final CityRepository cityRepository;
     private final FlightRepository flightRepository;
     private final AirportRepository airportRepository;
 
-    public ReportController(CityRepository cityRepository,
-                            FlightRepository flightRepository,
-                            AirportRepository airportRepository) {
+    public ReportController(
+            FlightRepository flightRepository,
+            AirportRepository airportRepository) {
 
-        this.cityRepository = cityRepository;
         this.flightRepository = flightRepository;
         this.airportRepository = airportRepository;
     }
