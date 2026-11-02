@@ -1,7 +1,6 @@
 package ca.keyin.controller;
 
 import ca.keyin.entity.Airport;
-import ca.keyin.entity.City;
 import ca.keyin.entity.Flight;
 import ca.keyin.entity.Passenger;
 
