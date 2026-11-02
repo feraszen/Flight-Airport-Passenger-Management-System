@@ -2,7 +2,7 @@
 
 ## SDATDEVOPS Midterm Project
 
-**Team Members**
+### Team Members
 
 - Feras Zen Alabdeen
 - Darrell Declaro
@@ -49,6 +49,42 @@ Flight-Airport-Passenger-Management-System
 │
 └── flight-network-cli
 ```
+
+---
+
+# Running the System
+
+## Start the API
+
+```bash
+cd flight-network-api
+mvn spring-boot:run
+```
+
+Verify:
+
+```text
+http://localhost:8080
+```
+
+---
+
+## Start the CLI
+
+Open a second terminal:
+
+```bash
+cd flight-network-cli
+mvn exec:java -Dexec.mainClass="org.keyin.Main"
+```
+
+The CLI connects to:
+
+```text
+http://localhost:8080
+```
+
+by default.
 
 ---
 
@@ -147,7 +183,7 @@ Flight
 
 ## CRUD Operations
 
-Implemented for all entities:
+Implemented for:
 
 ```text
 City
@@ -177,43 +213,11 @@ DELETE
 GET /api/reports/airports-by-city
 ```
 
-Example:
-
-```json
-{
-  "Toronto": ["YYZ"],
-  "Dubai": ["DXB"],
-  "Frankfurt": ["FRA"]
-}
-```
-
----
-
 ### Aircraft by Passenger
 
 ```http
 GET /api/reports/aircraft-by-passenger
 ```
-
-Example:
-
-```json
-{
-  "Ahmed Ali": [
-    "Airbus A320",
-    "Airbus A321"
-  ],
-  "Sara Khan": [
-    "Airbus A321"
-  ],
-  "Omar Hassan": [
-    "Boeing 737 MAX",
-    "Airbus A320"
-  ]
-}
-```
-
----
 
 ### Airports by Aircraft
 
@@ -221,59 +225,17 @@ Example:
 GET /api/reports/airports-by-aircraft
 ```
 
-Example:
-
-```json
-{
-  "Airbus A320": [
-    "DXB",
-    "FRA",
-    "YYZ"
-  ],
-  "Airbus A321": [
-    "FRA",
-    "YYZ"
-  ],
-  "Boeing 737 MAX": [
-    "YYZ",
-    "DXB"
-  ]
-}
-```
-
----
-
 ### Airports Used by Passenger
 
 ```http
 GET /api/reports/airports-used-by-passenger
 ```
 
-Example:
-
-```json
-{
-  "Ahmed Ali": [
-    "DXB",
-    "FRA",
-    "YYZ"
-  ],
-  "Sara Khan": [
-    "FRA",
-    "YYZ"
-  ],
-  "Omar Hassan": [
-    "YYZ",
-    "DXB"
-  ]
-}
-```
-
 ---
 
 ## Pagination & Sorting
 
-Implemented and tested for:
+Implemented for:
 
 ```http
 /api/cities/paged
@@ -293,10 +255,6 @@ GET /api/passengers/paged?page=0&size=2
 GET /api/passengers/paged?page=0&size=3&sortBy=lastName&direction=desc
 ```
 
-```http
-GET /api/airports/paged?page=0&size=3&sortBy=code&direction=desc
-```
-
 ---
 
 ## Validation
@@ -311,7 +269,7 @@ Implemented using:
 @Size
 ```
 
-Validation is enforced for:
+Applied to:
 
 ```text
 City
@@ -319,18 +277,6 @@ Airport
 Passenger
 Aircraft
 Flight
-```
-
-Example response:
-
-```http
-400 Bad Request
-```
-
-```json
-{
-  "error": "Validation failed"
-}
 ```
 
 ---
@@ -358,7 +304,7 @@ Examples:
 
 ## API Testing
 
-### Service Tests
+Implemented Service Tests:
 
 ```text
 CityServiceTest
@@ -368,7 +314,7 @@ AircraftServiceTest
 FlightServiceTest
 ```
 
-Latest Result:
+Result:
 
 ```text
 Tests run: 5
@@ -408,13 +354,9 @@ GitHub Actions
 
 ---
 
-## Menu
+## CLI Menu
 
 ```text
-=================================
- Flight Network CLI
-=================================
-
 1. Airports by City
 2. Aircraft by Passenger
 3. Airports by Aircraft
@@ -426,55 +368,14 @@ GitHub Actions
 
 ---
 
-## CLI Architecture
-
-```text
-Main.java
-
-client/
-└── ApiClient.java
-
-service/
-└── ReportService.java
-
-history/
-├── HistoryManager.java
-└── ReportRecord.java
-
-ui/
-├── MainMenu.java
-└── ConsolePrinter.java
-```
-
----
-
 ## History Support
 
-The CLI records:
+The application records:
 
 ```text
 Question Number
 Report Title
 Timestamp
-```
-
-Example:
-
-```text
-Viewing History
-
-1. Airports by Aircraft
-2. Airports Used by Passenger
-```
-
----
-
-## Previous Record Support
-
-Example:
-
-```text
-Previous: Airports by Aircraft
 ```
 
 ---
@@ -504,19 +405,17 @@ BUILD SUCCESS
 
 # Integration Testing
 
-The CLI was successfully integrated and tested against the real Spring Boot API.
-
 Verified workflow:
 
 ```text
 CLI
  ↓
-Report Endpoints
+REST API
  ↓
-MySQL Data
+MySQL
 ```
 
-The following features were verified using the real API:
+Successfully tested:
 
 ```text
 Airports by City
@@ -529,19 +428,13 @@ Previous Record
 
 ---
 
-# Flight Scenario
-
-The project currently uses the following flight scenario.
+# Sample Flight Scenario
 
 ### Flight 1
 
 ```text
 DXB → FRA
-
-Passenger:
 Ahmed Ali
-
-Aircraft:
 Emirates Airbus A320
 ```
 
@@ -549,12 +442,8 @@ Emirates Airbus A320
 
 ```text
 FRA → YYZ
-
-Passengers:
 Ahmed Ali
 Sara Khan
-
-Aircraft:
 Lufthansa Airbus A321
 ```
 
@@ -562,11 +451,7 @@ Lufthansa Airbus A321
 
 ```text
 YYZ → DXB
-
-Passenger:
 Omar Hassan
-
-Aircraft:
 Air Canada Boeing 737 MAX
 ```
 
@@ -574,17 +459,13 @@ Air Canada Boeing 737 MAX
 
 ```text
 DXB → YYZ
-
-Passenger:
 Omar Hassan
-
-Aircraft:
 Emirates Airbus A320
 ```
 
 ---
 
-# GitHub Project Management
+# Project Management
 
 The project uses:
 
@@ -607,16 +488,6 @@ feature/*
 
 ---
 
-# Postman Collection
-
-Available at:
-
-```text
-flight-network-api/docs/postman/FlightNetwork.postman_collection.json
-```
-
----
-
 # Screenshots
 
 API Screenshots:
@@ -631,48 +502,42 @@ CLI Screenshots:
 flight-network-cli/docs/images/
 ```
 
-Included:
+---
+
+# Postman Collection
 
 ```text
-Reports
-Pagination
-Sorting
-Validation
-CLI Menu
-History
-Previous Record
-Project Board
-Pull Requests
-Collection Runner
+flight-network-api/docs/postman/FlightNetwork.postman_collection.json
 ```
 
 ---
 
 # Documentation
 
-API Reflection:
-
 ```text
 flight-network-api/REFLECTION_API.md
+flight-network-cli/READMEPART2.md
 ```
 
 ---
 
 # Repositories
 
-## API Repository
+## Original Development Repositories
+
+### API Repository
 
 ```text
 https://github.com/feraszen/Flight-Management-CLI
 ```
 
-## CLI Repository
+### CLI Repository
 
 ```text
 https://github.com/dralodrec/flight-network-cli
 ```
 
-## Project Repository
+## Final Submission Repository
 
 ```text
 https://github.com/feraszen/Flight-Airport-Passenger-Management-System
