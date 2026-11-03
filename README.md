@@ -654,6 +654,21 @@ DEMO_VIDEO.md
 ```
 
 ---
+## Project Resources
+
+### GitHub Project Board
+
+```text
+https://github.com/users/feraszen/projects/1
+```
+
+### GitHub Actions
+
+CLI Continuous Integration Workflow:
+
+```text
+https://github.com/dralodrec/flight-network-cli/actions
+```
 
 # Final Status
 
