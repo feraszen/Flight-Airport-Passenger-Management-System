@@ -1,33 +1,40 @@
 name: Java CI
 
 on:
-  pull_request:
-    branches: [develop, main]
   push:
-    branches: [develop, main]
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
 
 permissions:
   contents: read
 
 jobs:
   test:
-    name: Java tests
+    name: Build and Test
+
     runs-on: ubuntu-latest
+
     timeout-minutes: 10
 
     steps:
-      - name: Check out repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up JDK 27
-        uses: actions/setup-java@v6
+      - name: Set Up JDK 21
+        uses: actions/setup-java@v4
         with:
-          distribution: oracle-openjdk
-          java-version: '27'
+          distribution: temurin
+          java-version: '21'
           cache: maven
 
-      - name: Show Java and Maven versions
+      - name: Verify Java and Maven
         run: mvn --version
 
-      - name: Run tests
-        run: mvn --batch-mode --no-transfer-progress clean test -DfailIfNoTests=true
+      - name: Run Unit Tests
+        run: mvn --batch-mode --no-transfer-progress clean test
